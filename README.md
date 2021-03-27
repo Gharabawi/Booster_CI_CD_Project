@@ -69,6 +69,24 @@ and the branch master will create a docker container named:
 
 # Dockerfile 
 Builds an image and adds the required package and files to run the django App, Also executes commands on creation to spin up the App correctly.
+First the docker file copy the following:
+
+    simpleApp/
+    manage.py
+    requirements.txt
+    
+to the docker image /
+and then will change the working directory to "/"
+After that it will update apt and run the following commands:
+
+    RUN apt-get update -qq
+    RUN apt-get install python3.6 -qq
+    RUN apt-get install python3-pip -qq
+    
+And finally it will execute the following to start the django server on creation:
+    
+    CMD pip3 install -r requirements.txt; python3 manage.py makemigrations; python3 manage.py migrate; python3 manage.py runserver 0.0.0.0:8000;/bin/bash
+    
 
 # Slack
 Jenkins is already integrated with slack and once either builds of master or dev completes you will receive a notification on the configured workspace and channel
