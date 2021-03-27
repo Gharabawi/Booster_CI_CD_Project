@@ -51,3 +51,20 @@ Create CI/CD pipeline using jenkinsfile to deploy simple django web app as a mic
   start the server:
 
       python3.6 manage.py runserver 0.0.0.0:8000
+      
+      
+      
+      
+#Expected Behavior
+
+Adding the Jenkins file in either branch will result in the building of the pipeline using a slave with the label "ubuntu_doc",
+the branch dev will create a docker container named "django_dev" listening on port 8001 and the branch master will create a docker container named "django_master" listening on port 8000 
+
+#Dockerfile 
+Builds an image and adds the required package and files to run the django App, Also executes commands on creation to spin up the App correctly.
+
+#Slack
+Jenkins is already integrated with slack and once either builds of master or dev completes you will receive a notification on the configured workspace and channel
+
+#Multibranch pipline
+There is a Jenkinsfile in each branch which jenkins will autoDetect once the multibranch is configured and start execution
