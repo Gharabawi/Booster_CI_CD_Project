@@ -38,11 +38,11 @@ pipeline{
 
                         success{
                         echo 'Success'
-                        slackSend color: "good", message: "build done successfully"
+                        slackSend color: "good", message: "Master: build done successfully"
                         }
                         failure {
                         echo 'Failed'
-                        slackSend color: "bad", message: "Failure Check logs"
+                        slackSend color: "bad", message: "Master: Failure Check logs"
                         }
 
                 }
