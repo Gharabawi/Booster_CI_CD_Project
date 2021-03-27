@@ -90,6 +90,11 @@ And finally it will execute the following to start the django server on creation
 
 # Slack
 Jenkins is already integrated with slack and once either builds of master or dev completes you will receive a notification on the configured workspace and channel
+using the following for both master and dev branches (in dev branch master is replaced with dev):
+
+    slackSend color: "good", message: "Master: build done successfully"
+    slackSend color: "bad", message: "Master: Failure Check logs"
+    
 
 # Multibranch pipline
 There is a Jenkinsfile in each branch which jenkins will autoDetect once the multibranch is configured and start execution
