@@ -59,8 +59,12 @@ Create CI/CD pipeline using jenkinsfile to deploy simple django web app as a mic
 
 Adding the Jenkins file in either branch will result in the building of the pipeline using a slave with the label "ubuntu_doc",
 the branch dev will create a docker container named: 
-    "django_dev" listening on port 8001 
+
+     "django_dev" listening on port 8001 
+      
+    
 and the branch master will create a docker container named:
+
     "django_master" listening on port 8000 
 
 # Dockerfile 
