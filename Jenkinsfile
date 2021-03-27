@@ -30,10 +30,9 @@ pipeline{
                     steps{
                 sh 'docker container run -td -p 8000:8000 --name django mada96/django:v1.0'
 
-                }
-                }
-                stage('Notification'){
-                steps{
+                    }
+                
+                
 
                 post{
 
@@ -48,7 +47,7 @@ pipeline{
 
                 }
 
-                }
+                
                 }
 
 
