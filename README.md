@@ -98,5 +98,5 @@ using the following for both master and dev branches (in dev branch master is re
     slackSend color: "bad", message: "Master: Failure Check logs"
     
 
-## Multibranch pipline
+## Multibranch pipeline
 There is a Jenkinsfile in **each** branch which jenkins will autoDetect once the multibranch is configured and start execution.
