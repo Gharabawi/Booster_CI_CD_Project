@@ -58,7 +58,7 @@ Create CI/CD pipeline using jenkinsfile to deploy simple django web app as a mic
 # Expected Behavior
 
 Adding the Jenkins file in either branch will result in the building of the pipeline using a slave with the label "ubuntu_doc",
-the branch dev will create a docker container named: 
+the branch dev will **create** a docker container named: 
 
      "django_dev" listening on port 8001 
       
@@ -69,7 +69,7 @@ and the branch master will create a docker container named:
 
 ## Dockerfile 
 Builds an image and adds the required package and files to run the django App, Also executes commands on creation to spin up the App correctly.
-First the docker file copy the following:
+First the docker file **copy** the following:
 
     simpleApp/
     manage.py
@@ -77,7 +77,7 @@ First the docker file copy the following:
     
 to the docker image /
 and then will change the working directory to "/"
-After that it will update apt and run the following commands:
+After that it will **update apt and run** the following commands:
 
     RUN apt-get update -qq
     RUN apt-get install python3.6 -qq
@@ -91,7 +91,7 @@ And finally it will execute the following to start the django server on creation
     
 
 ## Slack
-Jenkins is already integrated with slack and once either builds of master or dev completes you will receive a notification on the configured workspace and channel
+Jenkins is **already integrated with slack** and once either builds of master or dev completes you will receive a notification on the configured workspace and channel
 using the following for both master and dev branches (in dev branch master is replaced with dev):
 
     slackSend color: "good", message: "Master: build done successfully"
@@ -99,4 +99,4 @@ using the following for both master and dev branches (in dev branch master is re
     
 
 ## Multibranch pipline
-There is a Jenkinsfile in each branch which jenkins will autoDetect once the multibranch is configured and start execution.
+There is a Jenkinsfile in **each** branch which jenkins will autoDetect once the multibranch is configured and start execution.
