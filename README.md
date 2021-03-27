@@ -84,6 +84,7 @@ After that it will update apt and run the following commands:
     RUN apt-get install python3-pip -qq
     
   you dont actually need to run because ubuntu comes already with python 3,but i added it for the rare case it doesn't exist.
+  
 And finally it will execute the following to start the django server on creation:
     
     CMD pip3 install -r requirements.txt; python3 manage.py makemigrations; python3 manage.py migrate; python3 manage.py runserver 0.0.0.0:8000;/bin/bash
