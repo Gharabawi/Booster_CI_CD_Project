@@ -68,7 +68,7 @@ and the branch master will create a docker container named:
     "django_master" listening on port 8000 
     
 # **Jenkinsfile**
-##Agent
+## Agent
 ```
         agent {label "ubuntu_doc"}
 ```
@@ -134,7 +134,7 @@ post{
 ```                
  
  
-## Dockerfile 
+# Dockerfile 
 Builds an image and adds the required package and files to run the django App, Also executes commands on creation to spin up the App correctly.
 First the docker file **copy** the following:
 
@@ -157,7 +157,7 @@ And finally it will execute the following to start the django server on creation
     CMD pip3 install -r requirements.txt; python3 manage.py makemigrations; python3 manage.py migrate; python3 manage.py runserver 0.0.0.0:8000;/bin/bash
     
 
-## Slack
+# Slack
 Jenkins is **already integrated with slack** and once either builds of master or dev completes you will receive a notification on the configured workspace and channel
 using the following for both master and dev branches (in dev branch master is replaced with dev):
 
@@ -165,5 +165,5 @@ using the following for both master and dev branches (in dev branch master is re
     slackSend color: "bad", message: "Master: Failure Check logs"
     
 
-## Multibranch pipeline
+# Multibranch pipeline
 There is a Jenkinsfile in **each** branch which jenkins will autoDetect once the multibranch is configured and start execution.
