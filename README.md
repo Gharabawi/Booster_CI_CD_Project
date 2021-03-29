@@ -83,7 +83,7 @@ stage('Build Image'){
           }
 ```
 This part uses the below explained dockerfile to build an image.
-##Push Stage
+## Push Stage
 ```
 stage('Push Image'){
 
@@ -105,7 +105,7 @@ In this stage the withCredentials() is called to sepcifiy which Credentials on J
     
  then the image gets pushed to the docker hub repo.
  
- ##Deploy Stage
+ ## Deploy Stage
  Here the slave must have the docker cli and be connected to the docker daemon in order to create the container
  ```
  stage('Deploy'){
