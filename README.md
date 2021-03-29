@@ -66,7 +66,74 @@ the branch dev will **create** a docker container named:
 and the branch master will create a docker container named:
 
     "django_master" listening on port 8000 
+    
+# **Jenkinsfile**
+##Agent
+```
+        agent {label "ubuntu_doc"}
+```
+This part specifies that the agent that will run this pipeline has the Label "ubuntu_doc"
+## Build Stage
+```
+stage('Build Image'){
 
+       steps{
+             sh 'docker build . -t mada96/django:v1.0'
+            }
+          }
+```
+This part uses the below explained dockerfile to build an image.
+##Push Stage
+```
+stage('Push Image'){
+
+                steps{
+                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                // available as an env variable, but will be masked if you try to print it out any which way
+                // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
+                sh 'docker login -u $USERNAME -p $PASSWORD'
+                
+                }
+                sh 'docker push mada96/django:v1.0'
+                }
+                }
+```
+In this stage the withCredentials() is called to sepcifiy which Credentials on Jenkins Credentials to use for docker and linked by the credentialsID
+*the credentials are only accessed by*:
+    
+    sh 'docker login -u $USERNAME -p $PASSWORD'    
+    
+ then the image gets pushed to the docker hub repo.
+ 
+ ##Deploy Stage
+ Here the slave must have the docker cli and be connected to the docker daemon in order to create the container
+ ```
+ stage('Deploy'){
+                    steps{
+                sh 'docker container run -td -p 8000:8000 --name django_master mada96/django:v1.0'
+
+                    }
+```
+The following part is used to send notifications to Slack
+```
+post{
+
+                        success{
+                        echo 'Success'
+                        slackSend color: "good", message: "Master: build done successfully"
+                        }
+                        failure {
+                        echo 'Failed'
+                        slackSend color: "bad", message: "Master: Failure Check logs"
+                        }
+
+                }
+
+                
+                }
+```                
+ 
+ 
 ## Dockerfile 
 Builds an image and adds the required package and files to run the django App, Also executes commands on creation to spin up the App correctly.
 First the docker file **copy** the following:
