@@ -10,7 +10,7 @@ Create CI/CD pipeline using jenkinsfile to deploy simple django web app as a mic
 
 3- configure ubuntu slave to use it for the pipeline
 
-4- create slck workspace and integrate it with jenkins
+4- create slack workspace and integrate it with jenkins
 
 5- install any plugin from your choice to create statistics about builds
 
